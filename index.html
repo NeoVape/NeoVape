@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NéoVape – Votre récompense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f7f4;--ink:#14213d;--mut:#55607a;--sun:#ffb400;
+:root{--bg:#f6f7f4;--ink:#14213d;--mut:#55607a;--sun:#ffb400;--card:#fff;--line:#dce3ea;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a30;--ink:#f3f5f8;--mut:#a9b4c9}}
-:root[data-theme="dark"]{--bg:#0f1a30;--ink:#f3f5f8;--mut:#a9b4c9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a30;--ink:#f3f5f8;--mut:#a9b4c9;--card:#17254a;--line:#2b3a63}}
+:root[data-theme="dark"]{--bg:#0f1a30;--ink:#f3f5f8;--mut:#a9b4c9;--card:#17254a;--line:#2b3a63}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.5}
@@ -18,12 +19,26 @@ main{max-width:30rem;margin:0 auto;padding:1.5rem 1.25rem 3rem}
 .logo b{color:var(--sun)}
 h1{font-size:2rem;line-height:1.1;letter-spacing:-.03em;margin:1.5rem 0 .5rem;font-weight:800}
 p{margin:.25rem 0 1rem;color:var(--mut)}
-.ticket{position:relative;background:var(--sun);color:#14213d;border-radius:1rem;padding:2rem 1.25rem;margin:1.5rem 0 2rem;text-align:center}
+.ticket{position:relative;background:var(--sun);color:#14213d;border-radius:1rem;padding:1.5rem 1.25rem;margin:1.5rem 0 2rem;text-align:center}
 .ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:1.5rem;height:1.5rem;background:var(--bg);border-radius:50%;transform:translateY(-50%)}
 .ticket::before{left:-.75rem}.ticket::after{right:-.75rem}
-.big{font-size:4rem;font-weight:800;line-height:1;letter-spacing:-.04em}
-.sub{font-weight:600;margin-top:.5rem}
-.hint{margin:1rem 0 0;color:#14213d;opacity:.8;font-size:.9rem;border-top:2px dashed rgba(20,33,61,.35);padding-top:.75rem}
+.ticket .big{font-size:3.5rem;font-weight:800;line-height:1;letter-spacing:-.04em}
+.ticket .sub{font-weight:600;margin-top:.5rem}
+.ticket .hint{margin:.75rem 0 0;color:#14213d;opacity:.8;font-size:.9rem;border-top:2px dashed rgba(20,33,61,.35);padding-top:.75rem}
+.more-btn{display:block;width:100%;background:var(--ink);color:var(--bg);border:0;border-radius:.75rem;padding:1rem;font:600 1.05rem inherit;font-family:inherit;cursor:pointer}.more-btn:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.tabs{display:flex;gap:.5rem;border-bottom:1px solid var(--line)}
+.tabs button{flex:1;background:none;border:0;border-bottom:3px solid transparent;color:var(--mut);font:600 1rem inherit;font-family:inherit;padding:.75rem 0;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--sun)}
+.tabs button:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+section[hidden]{display:none}
+section{padding-top:1.25rem}
+h2{font-size:1.4rem;margin:0 0 .5rem;letter-spacing:-.02em}
+ul{list-style:none;padding:0;margin:1rem 0}
+li{padding:.75rem 0;border-bottom:1px solid var(--line)}
+li strong{display:block}
+li span{color:var(--mut);font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}.chips span{background:var(--card);border:1px solid var(--line);border-radius:2rem;padding:.25rem .75rem;color:var(--ink);font-size:.9rem}
+footer{margin-top:2.5rem;color:var(--mut);font-size:.85rem}
 </style>
 </head>
 <body>
@@ -31,11 +46,61 @@ p{margin:.25rem 0 1rem;color:var(--mut)}
   <div class="logo">Néo<b>Vape</b></div>
   <h1>Bienvenue, et merci d’avoir rapporté votre capsule.</h1>
   <p>Votre geste compte : une capsule récupérée, c’est un déchet électronique de moins.</p>
+
   <div class="ticket" role="note">
     <div class="big">−10&nbsp;%</div>
     <div class="sub">sur votre prochain achat en boutique</div>
     <p class="hint">Montrez cet écran en caisse.</p>
   </div>
+
+  <button class="more-btn" id="moreBtn" type="button">Découvrir NéoVape</button>
+  <div id="more" hidden>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="t-puff" aria-selected="true" aria-controls="p-puff">Puff</button>
+    <button role="tab" id="t-caps" aria-selected="false" aria-controls="p-caps">Capsules</button>
+  </div>
+
+  <section id="p-puff" role="tabpanel" aria-labelledby="t-puff">
+    <h2>Une puff qu’on garde</h2>
+    <p>NéoVape est un boîtier rechargeable : la batterie et l’électronique restent à vous. Vous ne changez que la capsule.</p>
+    <ul>
+      <li><strong>Batterie sodium-ion</strong><span>Sans lithium ni cobalt, sans risque d’incendie au recyclage.</span></li>
+      <li><strong>Jusqu’à 400 recharges</strong><span>Un seul boîtier pour des mois d’utilisation.</span></li>
+      <li><strong>2 € de moins qu’une puff courante</strong><span>Le boîtier de base coûte moins cher dès l’achat.</span></li>
+    </ul>
+  </section>
+
+  <section id="p-caps" role="tabpanel" aria-labelledby="t-caps" hidden>
+    <h2>Changez de goût, pas d’appareil</h2>
+    <p>Clipsez une nouvelle capsule sur votre boîtier. Elle contient le coton, la résistance et le goût.</p>
+    <ul>
+      <li><strong>5 € la capsule</strong><span>50&nbsp;% moins cher qu’une puff de base.</span></li>
+      <li><strong>Une consigne qui rapporte</strong><span>Rapportez votre capsule usagée dans le bac, scannez, et gagnez une récompense.</span></li>
+      <li><strong>Les goûts disponibles</strong><div class="chips"><span>Menthe glaciale</span><span>Fruits rouges</span><span>Pomme verte</span><span>Pastèque</span><span>Mangue</span><span>Cola</span></div></li>
+      <li><strong>De nouveaux goûts arrivent prochainement</strong><span>Revenez voir cette page pour les découvrir.</span></li>
+    </ul>
+  </section>
+
+  </div>
+  <footer>NéoVape · Projet étudiant d’entrepreneuriat.</footer>
 </main>
+<script>
+(function(){
+  document.getElementById('moreBtn').addEventListener('click',function(){
+    document.getElementById('more').hidden=false;
+    this.hidden=true;
+  });
+  var tabs=document.querySelectorAll('[role="tab"]');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(o){
+        var on=o===t;
+        o.setAttribute('aria-selected',on);
+        document.getElementById(o.getAttribute('aria-controls')).hidden=!on;
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>
