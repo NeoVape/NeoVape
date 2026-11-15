@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NéoVape – Votre récompense</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f4;--ink:#14213d;--mut:#55607a;--sun:#ffb400;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a30;--ink:#f3f5f8;--mut:#a9b4c9}}
+:root[data-theme="dark"]{--bg:#0f1a30;--ink:#f3f5f8;--mut:#a9b4c9}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.5}
+main{max-width:30rem;margin:0 auto;padding:1.5rem 1.25rem 3rem}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.logo b{color:var(--sun)}
+h1{font-size:2rem;line-height:1.1;letter-spacing:-.03em;margin:1.5rem 0 .5rem;font-weight:800}
+p{margin:.25rem 0 1rem;color:var(--mut)}
+.ticket{position:relative;background:var(--sun);color:#14213d;border-radius:1rem;padding:2rem 1.25rem;margin:1.5rem 0 2rem;text-align:center}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:1.5rem;height:1.5rem;background:var(--bg);border-radius:50%;transform:translateY(-50%)}
+.ticket::before{left:-.75rem}.ticket::after{right:-.75rem}
+.big{font-size:4rem;font-weight:800;line-height:1;letter-spacing:-.04em}
+.sub{font-weight:600;margin-top:.5rem}
+.hint{margin:1rem 0 0;color:#14213d;opacity:.8;font-size:.9rem;border-top:2px dashed rgba(20,33,61,.35);padding-top:.75rem}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo">Néo<b>Vape</b></div>
+  <h1>Bienvenue, et merci d’avoir rapporté votre capsule.</h1>
+  <p>Votre geste compte : une capsule récupérée, c’est un déchet électronique de moins.</p>
+  <div class="ticket" role="note">
+    <div class="big">−10&nbsp;%</div>
+    <div class="sub">sur votre prochain achat en boutique</div>
+    <p class="hint">Montrez cet écran en caisse.</p>
+  </div>
+</main>
+</body>
+</html>
